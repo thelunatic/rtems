@@ -256,6 +256,7 @@ struct IMFS_jnode_tt {
   time_t              stat_mtime;            /* Time of last modification */
   time_t              stat_ctime;            /* Time of last status change */
   const IMFS_node_control *control;
+  void               *context;
 };
 
 #define IMFS_NODE_FLAG_NAME_ALLOCATED 0x1
@@ -943,9 +944,7 @@ static inline void *IMFS_generic_get_context_by_node(
   const IMFS_jnode_t *node
 )
 {
-  const IMFS_generic_t *generic = (const IMFS_generic_t *) node;
-
-  return generic->context;
+  return node->context;
 }
 
 static inline void *IMFS_generic_get_context_by_location(
