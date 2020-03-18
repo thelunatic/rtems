@@ -813,7 +813,7 @@ source:
 - cpukit/libfs/src/dosfs/msdos_rmnod.c
 - cpukit/libfs/src/dosfs/msdos_statvfs.c
 - cpukit/libfs/src/imfs/deviceio.c
-- cpukit/libfs/src/imfs/imfs_add_node.c
+#- cpukit/libfs/src/imfs/imfs_add_node.c
 - cpukit/libfs/src/imfs/imfs_chown.c
 - cpukit/libfs/src/imfs/imfs_config.c
 - cpukit/libfs/src/imfs/imfs_creat.c
@@ -836,7 +836,7 @@ source:
 - cpukit/libfs/src/imfs/imfs_mknod.c
 - cpukit/libfs/src/imfs/imfs_mount.c
 - cpukit/libfs/src/imfs/imfs_node.c
-- cpukit/libfs/src/imfs/imfs_node_destroy_default.c
+#- cpukit/libfs/src/imfs/imfs_node_destroy_default.c
 - cpukit/libfs/src/imfs/imfs_rename.c
 - cpukit/libfs/src/imfs/imfs_rmnod.c
 - cpukit/libfs/src/imfs/imfs_stat.c
