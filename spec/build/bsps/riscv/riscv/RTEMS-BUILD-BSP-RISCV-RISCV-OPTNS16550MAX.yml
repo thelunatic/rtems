@@ -8,6 +8,9 @@ default-by-variant:
 - value: null
   variants:
   - riscv/frdme310arty.*
+- value: 1
+  variants:
+  - riscv/rv64xcheri_gfe
 derived: false
 enabled-by: []
 format: '{}'

@@ -4,7 +4,10 @@ actions:
 active: true
 build-type: option
 default: true
-default-by-variant: []
+default-by-variant:
+- value: false
+  variants:
+  - riscv/rv64xcheri_gfe
 derived: false
 enabled-by: []
 header: ''

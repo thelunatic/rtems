@@ -11,6 +11,9 @@ default-by-variant:
 - value: 2147483648
   variants:
   - riscv/rv64.*medany
+- value: 3221225472
+  variants:
+  - riscv/rv64xcheri_gfe
 - value: 1879048192
   variants:
   - riscv/rv64.*
