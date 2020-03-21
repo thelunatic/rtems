@@ -38,6 +38,7 @@ source:
 - cpukit/score/cpu/riscv/riscv-context-initialize.c
 - cpukit/score/cpu/riscv/riscv-context-validate.S
 - cpukit/score/cpu/riscv/riscv-context-volatile-clobber.S
+- cpukit/score/cpu/riscv/riscv-cheri.c
 - cpukit/score/cpu/riscv/riscv-counter.S
 text: ''
 type: build
