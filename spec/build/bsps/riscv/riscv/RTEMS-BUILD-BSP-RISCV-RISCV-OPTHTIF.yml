@@ -4,7 +4,10 @@ actions:
 active: true
 build-type: option
 default: false
-default-by-variant: []
+default-by-variant:
+- value: true
+  variants:
+  - riscv/rv64imacxcheri_medany
 derived: false
 enabled-by: []
 header: ''
