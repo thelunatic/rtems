@@ -23,6 +23,14 @@ default-by-variant:
   variants:
   - riscv/rv64imafdcxcheri_medany
   - riscv/rv64xcheri_gfe
+- value:
+  - -march=rv64imafdcxcheri
+  - -mabi=l64pc128d
+  - -mcmodel=medium
+  - -mno-relax
+  - -fno-pic
+  variants:
+  - riscv/rv64imafdcxcheri_medany
   - riscv/rv64xcheri_gfe
 - value:
   - -march=rv64imafdc
