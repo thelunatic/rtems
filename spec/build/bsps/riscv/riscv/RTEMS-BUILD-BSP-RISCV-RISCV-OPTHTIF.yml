@@ -8,6 +8,7 @@ default-by-variant:
 - value: true
   variants:
   - riscv/rv64imacxcheri_medany
+  - riscv/rv64imafdcxcheri_medany
 derived: false
 enabled-by: []
 header: ''
