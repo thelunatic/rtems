@@ -1406,10 +1406,9 @@ def bsp_defaults(ctx):
                 for group in top_level_groups:
                     group.defaults(enable, variant)
                 bsps[arch][bsp].defaults(enable, variant)
+                print("COMPILER = " + compiler)
     if first:
         no_matches_error(ctx, white_list)
-
-    print("COMPILER = " + compiler)
 
 def bsp_list(ctx):
     """lists base BSP variants"""
