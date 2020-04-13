@@ -8,6 +8,7 @@ default-by-variant:
 - value: false
   variants:
   - riscv/rv64xcheri_gfe
+  - riscv/rv64xcheri_qemu
   - riscv/rv64imacxcheri_medany
   - riscv/rv64imafdcxcheri_medany
 derived: false
