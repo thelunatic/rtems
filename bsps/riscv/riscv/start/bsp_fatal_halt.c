@@ -31,11 +31,15 @@
 
 #include <libfdt.h>
 
+#if __CHERI__
+#include <rtems/score/cheri-utility.h>
+#endif
+
 void _CPU_Fatal_halt(uint32_t source, uint32_t error)
 {
   const char *fdt;
   int node;
-  volatile uintptr_t *sifive_test;
+  volatile size_t *sifive_test;
 
 #if RISCV_ENABLE_HTIF_SUPPORT != 0
   htif_poweroff();
@@ -44,6 +48,10 @@ void _CPU_Fatal_halt(uint32_t source, uint32_t error)
   fdt = bsp_fdt_get();
   node = fdt_node_offset_by_compatible(fdt, -1, "sifive,test0");
   sifive_test = riscv_fdt_get_address(fdt, node);
+
+#if __CHERI__
+  sifive_test = cheri_build_data_cap((size_t) sifive_test, sizeof(size_t), 0xff);
+#endif /* __CHERI__ */
 
   while (true) {
     if (sifive_test != NULL) {
