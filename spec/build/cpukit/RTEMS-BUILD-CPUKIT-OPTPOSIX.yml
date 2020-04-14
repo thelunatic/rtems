@@ -5,7 +5,14 @@ actions:
 active: true
 build-type: option
 default: false
-default-by-variant: []
+default-by-variant:
+- value: true
+  variants:
+  - riscv/rv64imafdc_medany
+  - riscv/rv64xcheri_gfe
+  - riscv/rv64xcheri_qemu
+  - riscv/rv64imacxcheri_medany
+  - riscv/rv64imafdcxcheri_medany
 derived: false
 enabled-by: []
 header: ''
