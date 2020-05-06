@@ -1,0 +1,23 @@
+actions:
+- get-boolean: null
+- define-condition: null
+active: true
+build-type: option
+default: false
+default-by-variant:
+- value: true
+  variants:
+  - riscv/rv64xcheri_gfe
+derived: false
+enabled-by: []
+header: ''
+level: 1.25
+links: []
+name: RISCV_BSP_GFE
+normative: true
+order: 0
+ref: ''
+reviewed: Gl85K9i7MCKVXN1aqIx4LyrZfBcyoFiKEciMLHe378o=
+text: |
+  enables support for GFE-based BSPs
+type: build
