@@ -203,6 +203,9 @@ content: |
     .gnu.version_r : ${LINKCMDS_ALIGN_DIRECTIVE} {
       *(.gnu.version_r)
     } > REGION_RODATA AT > REGION_RODATA_LOAD
+    .riscv.attributes : ${LINKCMDS_ALIGN_DIRECTIVE} {
+      *(.riscv.attributes)
+    } > REGION_RODATA AT > REGION_RODATA_LOAD
     .rela.dyn : ${LINKCMDS_ALIGN_DIRECTIVE} {
       *(.rela.init)
       *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
