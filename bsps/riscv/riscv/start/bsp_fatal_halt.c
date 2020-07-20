@@ -50,7 +50,7 @@ void _CPU_Fatal_halt(uint32_t source, uint32_t error)
   sifive_test = riscv_fdt_get_address(fdt, node);
 
 #if __CHERI__
-  sifive_test = cheri_build_data_cap((size_t) sifive_test, sizeof(size_t), 0xff);
+  sifive_test = cheri_build_data_cap((size_t) sifive_test, sizeof(uint32_t), 0xff);
 #endif /* __CHERI__ */
 
   while (true) {
