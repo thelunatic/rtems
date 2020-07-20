@@ -39,6 +39,14 @@
 
 #include <cheri_init_globals.h>
 #include <rtems/score/cheri-utility.h>
+#include <rtems/bspIo.h>
+#include <inttypes.h>
+
+#if __riscv_xlen == 32
+#define PRINT_REG "0x%08" PRIx32
+#elif __riscv_xlen == 64
+#define PRINT_REG "0x%016" PRIx64
+#endif
 
 inline void *cheri_build_data_cap(size_t address, size_t size, size_t perms) {
   void *returned_cap = __builtin_cheri_global_data_get();
@@ -55,4 +63,25 @@ inline void *cheri_build_code_cap(size_t address, size_t size, size_t perms) {
   returned_cap = __builtin_cheri_bounds_set(returned_cap, size);
   return returned_cap;
 }
+
+void cheri_print_cap(void *cap) {
+  printk("cap: [v: %" PRIu8 " | f: %" PRIu8 " | sealed: %" PRIu8 " | addr: " PRINT_REG \
+		  " | base: " PRINT_REG " | length: " PRINT_REG " | offset: " PRINT_REG \
+		  " | perms: " PRINT_REG "] \n",
+		  (uint8_t) __builtin_cheri_tag_get(cap),
+		  (uint8_t) __builtin_cheri_flags_get(cap),
+		  (uint8_t) __builtin_cheri_sealed_get(cap),
+		  __builtin_cheri_address_get(cap),
+		  __builtin_cheri_base_get(cap),
+		  __builtin_cheri_length_get(cap),
+		  __builtin_cheri_offset_get(cap),
+		  __builtin_cheri_perms_get(cap)
+  );
+}
+
+void cheri_print_scrs(void) {
+  printk("PCC "); cheri_print_cap(__builtin_cheri_program_counter_get());
+  printk("DDC "); cheri_print_cap(__builtin_cheri_global_data_get());
+}
+
 #endif /* __CHERI__ */

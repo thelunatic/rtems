@@ -44,6 +44,8 @@
 
 void *cheri_build_data_cap(size_t address, size_t size, size_t perms);
 void *cheri_build_code_cap(size_t address, size_t size, size_t perms);
+void cheri_print_cap(void *cap);
+void cheri_print_scrs(void);
 
 #endif /* __CHERI__ */
 #endif
