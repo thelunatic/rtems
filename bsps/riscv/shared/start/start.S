@@ -153,9 +153,9 @@ purecap:
 	amoswap.w	zero, zero, 0(t0)
 #endif
 
-	/* Setup CHERI trap code cap */
-  clgc            ct2, _RISCV_Exception_handler
-  cspecialrw      cnull, mtcc, ct2
+  /* Setup CHERI trap code cap */
+  cllc           ct0, _RISCV_Exception_handler
+  cspecialw      mtcc, ct0
 
   /* Jump to boot_card in purecap mode */
 	li	a0, 0
