@@ -138,6 +138,7 @@ typedef double RISCV_Float_Register;
 #endif
 
 #ifdef __CHERI__
+typedef uintptr_t RISCV_SCR_Register;
 #if __riscv_xlen == 32
 typedef uintptr_t RISCV_GPR_Register;
 typedef uint32_t RISCV_CSR_Register;
@@ -393,6 +394,17 @@ typedef struct {
   RISCV_Float_Register fs10;
   RISCV_Float_Register fs11;
 #endif
+
+#ifdef __CHERI_PURE_CAPABILITY__
+  RISCV_CSR_Register mccsr;
+
+  RISCV_SCR_Register pcc;
+  RISCV_SCR_Register ddc;
+  RISCV_SCR_Register mtcc;
+  RISCV_SCR_Register mtdc;
+  RISCV_SCR_Register mscratchc;
+  RISCV_SCR_Register mepcc;
+#endif /* __CHERI_PURE_CAPABILITY__ */
 } CPU_Exception_frame;
 
 /**

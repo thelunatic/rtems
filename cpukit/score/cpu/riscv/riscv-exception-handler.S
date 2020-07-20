@@ -470,6 +470,19 @@ SYM(_RISCV_Exception_handler):
 	FSREG	fs10, RISCV_EXCEPTION_FRAME_FS10(csp)
 	FSREG	fs11, RISCV_EXCEPTION_FRAME_FS11(csp)
 #endif
+  csrr s2, mccsr
+  cspecialr cs3, pcc
+  cspecialr cs4, ddc
+  cspecialr cs5, mtcc
+  cspecialr cs6, mscratchc
+  cspecialr cs7, mepcc
+
+  csd a3, RISCV_EXCEPTION_CHERI_FRAME_MCCSR(csp)
+  csc cs3, RISCV_EXCEPTION_CHERI_FRAME_PCC(csp)
+  csc cs4, RISCV_EXCEPTION_CHERI_FRAME_DDC(csp)
+  csc cs5, RISCV_EXCEPTION_CHERI_FRAME_MTCC(csp)
+  csc cs6, RISCV_EXCEPTION_CHERI_FRAME_MSCRATCHC(csp)
+  csc cs7, RISCV_EXCEPTION_CHERI_FRAME_MEPCC(csp)
 
 	li	a0, 9
   cmove ca1, csp
