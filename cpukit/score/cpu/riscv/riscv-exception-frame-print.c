@@ -32,6 +32,10 @@
 #include <rtems/bspIo.h>
 #include <inttypes.h>
 
+#ifdef __CHERI_PURE_CAPABILITY__
+#include <rtems/score/cheri-utility.h>
+#endif /* __CHERI_PURE_CAPABILITY__ */
+
 #if __riscv_xlen == 32
 #define PRINT_REG "0x%08" PRIxPTR
 #elif __riscv_xlen == 64
@@ -43,6 +47,51 @@ void _CPU_Exception_frame_print( const CPU_Exception_frame *frame )
   printk("mstatus 0x%08" PRIxPTR "\n", frame->Interrupt_frame.mstatus);
   printk("mcause  " PRINT_REG "\n", frame->mcause);
   printk("mepc    " PRINT_REG "\n", frame->Interrupt_frame.mepc);
+#ifdef __CHERI_PURE_CAPABILITY__
+  if (frame->mcause == RISCV_EXCEPTION_CHERI_FAULT) {
+    printk("CHERI EXCEPTION\n");
+    printk("mccsr      " PRINT_REG "\n", frame->mccsr);
+
+    printk("PCC "); cheri_print_cap(frame->pcc);
+    printk("DDC "); cheri_print_cap(frame->ddc);
+    printk("MEPCC "); cheri_print_cap(frame->mepcc);
+    printk("MTCC "); cheri_print_cap(frame->mtcc);
+    printk("MTDC "); cheri_print_cap(frame->mtdc);
+    printk("MSCRATCHC "); cheri_print_cap(frame->mscratchc);
+  }
+
+  printk("cra "); cheri_print_cap(frame->Interrupt_frame.ra);
+  printk("csp "); cheri_print_cap(frame->sp);
+  printk("cgp "); cheri_print_cap(frame->gp);
+  printk("ctp "); cheri_print_cap(frame->tp);
+  printk("ct0 "); cheri_print_cap(frame->Interrupt_frame.t0);
+  printk("ct1 "); cheri_print_cap(frame->Interrupt_frame.t1);
+  printk("ct2 "); cheri_print_cap(frame->Interrupt_frame.t2);
+  printk("cs0 "); cheri_print_cap(frame->Interrupt_frame.s0);
+  printk("cs1 "); cheri_print_cap(frame->Interrupt_frame.s1);
+  printk("ca0 "); cheri_print_cap(frame->Interrupt_frame.a0);
+  printk("ca1 "); cheri_print_cap(frame->Interrupt_frame.a1);
+  printk("ca2 "); cheri_print_cap(frame->Interrupt_frame.a2);
+  printk("ca3 "); cheri_print_cap(frame->Interrupt_frame.a3);
+  printk("ca4 "); cheri_print_cap(frame->Interrupt_frame.a4);
+  printk("ca5 "); cheri_print_cap(frame->Interrupt_frame.a5);
+  printk("ca6 "); cheri_print_cap(frame->Interrupt_frame.a6);
+  printk("ca7 "); cheri_print_cap(frame->Interrupt_frame.a7);
+  printk("cs2 "); cheri_print_cap(frame->s2);
+  printk("cs3 "); cheri_print_cap(frame->s3);
+  printk("cs4 "); cheri_print_cap(frame->s4);
+  printk("cs5 "); cheri_print_cap(frame->s5);
+  printk("cs6 "); cheri_print_cap(frame->s6);
+  printk("cs7 "); cheri_print_cap(frame->s7);
+  printk("cs8 "); cheri_print_cap(frame->s8);
+  printk("cs9 "); cheri_print_cap(frame->s9);
+  printk("cs10 "); cheri_print_cap(frame->s10);
+  printk("cs11 "); cheri_print_cap(frame->s11);
+  printk("ct3 "); cheri_print_cap(frame->Interrupt_frame.t3);
+  printk("ct4 "); cheri_print_cap(frame->Interrupt_frame.t4);
+  printk("ct5 "); cheri_print_cap(frame->Interrupt_frame.t5);
+  printk("ct6 "); cheri_print_cap(frame->Interrupt_frame.t6);
+#else
   printk("ra      " PRINT_REG "\n", frame->Interrupt_frame.ra);
   printk("sp      " PRINT_REG "\n", frame->sp);
   printk("gp      " PRINT_REG "\n", frame->gp);
@@ -74,6 +123,8 @@ void _CPU_Exception_frame_print( const CPU_Exception_frame *frame )
   printk("t4      " PRINT_REG "\n", frame->Interrupt_frame.t4);
   printk("t5      " PRINT_REG "\n", frame->Interrupt_frame.t5);
   printk("t6      " PRINT_REG "\n", frame->Interrupt_frame.t6);
+#endif /* __CHERI_PURE_CAPABILITY__ */
+
 #if __riscv_flen > 0
   printk("fcsr    0x%08" PRIx32 "\n", frame->Interrupt_frame.fcsr);
 #endif /* __riscv_flen */
