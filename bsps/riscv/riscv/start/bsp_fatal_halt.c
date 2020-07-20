@@ -39,7 +39,7 @@ void _CPU_Fatal_halt(uint32_t source, uint32_t error)
 {
   const char *fdt;
   int node;
-  volatile size_t *sifive_test;
+  volatile uint32_t *sifive_test;
 
 #if RISCV_ENABLE_HTIF_SUPPORT != 0
   htif_poweroff();
