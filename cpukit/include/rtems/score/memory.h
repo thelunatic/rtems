@@ -271,7 +271,7 @@ RTEMS_INLINE_ROUTINE void _Memory_Set_free_begin(
  */
 RTEMS_INLINE_ROUTINE uintptr_t _Memory_Get_free_size( const Memory_Area *area )
 {
-  return (uintptr_t) area->end - (uintptr_t) area->free;
+  return (char *)area->end - (char *) area->free;
 }
 
 /**
