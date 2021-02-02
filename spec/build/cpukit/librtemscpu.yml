@@ -500,8 +500,6 @@ links:
 - role: build-dependency
   uid: objmpci
 - role: build-dependency
-  uid: objnet
-- role: build-dependency
   uid: objpci
 - role: build-dependency
   uid: objpsxsgnl
